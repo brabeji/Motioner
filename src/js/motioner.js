@@ -25,7 +25,9 @@ var Motioner = {
       node.className += " " + node.getAttribute('data-mo'); 
 
       this.elementsQueue.push({
-        y: this.getPosition(node),    // add default position
+        y: this.getPosition(node),      // add default position
+        offset: 0,                      // TODO
+        targetTrigger: null,            // TODO
         node: node                      // add node
       });
 
@@ -33,7 +35,7 @@ var Motioner = {
 
     var self = this;
 
-    addEventListener('resize', function(e){ self.update(); });
+    addEventListener('resize', function(e){ self.updatePosition(); self.update(); });
     addEventListener('scroll', function(e){ self.update(); });
 
     self.update();
@@ -50,6 +52,13 @@ var Motioner = {
       return yPosition;
   },
 
+  updatePosition: function(){
+
+    for (var node of elements) {
+      node.y = this.getPosition(node)
+    }
+
+  },
 
   update: function(){
 
