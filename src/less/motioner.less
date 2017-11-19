@@ -4,7 +4,7 @@
       opacity: 1;
      
       /*animation-duration: 1.4s;*/
-      animation-duration: 2s;
+      animation-duration: 1s;
       animation-timing-function: ease-in-out;
       animation-fill-mode: backwards;
       
@@ -21,8 +21,14 @@
 
       &.mo-zoom-in{         animation-name: mo-zoom-in }
       &.mo-zoom-out{        animation-name: mo-zoom-out }
-      
 
+      &.mo-rotate-left{     animation-name: mo-rotate-left }
+      &.mo-rotate-right{    animation-name: mo-rotate-right }
+
+      &.mo-pulse-in{     animation-name: mo-pulse-in }
+      &.mo-pulse-out{    animation-name: mo-pulse-out }
+
+      /* Delays */
       &.mo-200{        animation-delay: 0.2s;}
       &.mo-400{        animation-delay: 0.4s;}
       &.mo-600{        animation-delay: 0.6s;}
@@ -79,10 +85,6 @@
   100%  {  opacity: 1; transform: translateY(0) }
 }
 
-
-
-
-
 @keyframes mo-zoom-in{
   0%    {  opacity: 0; transform: scale(0) }
   30%   {  opacity: 0; }
@@ -95,9 +97,27 @@
   100%  {  opacity: 1; transform: scale(1) }
 }
 
+@keyframes mo-rotate-left{
+  0%    {  transform: rotate3d(0, 0, 1, 180deg) }
+  100%  {  transform: rotate3d(0, 0, 1, 0) }
+}
 
+@keyframes mo-rotate-right{
+  0%    {  transform: rotate3d(0, 0, 1, -180deg) }
+  100%  {  transform: rotate3d(0, 0, 1, 0) }
+}
 
+@keyframes mo-pulse-in{
+  0%    {  transform: scale(1) }
+  50%  {  transform: scale(1.1) }
+  100%  {  transform: scale(1) }
+}
 
+@keyframes mo-pulse-out{
+  0%    {  transform: scale(1) }
+  50%  {  transform: scale(0.9) }
+  100%  {  transform: scale(1) }
+}
 
 
 
