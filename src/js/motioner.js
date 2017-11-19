@@ -10,6 +10,7 @@ var Motioner = {
   elements: [],
   
   init: function(){
+
     // work only in any browsers // needs to be updated
     elements = document.querySelectorAll('[data-mo]');
 
@@ -20,7 +21,22 @@ var Motioner = {
       // add specific animation, delays and other setups;
       node.className += " " + node.getAttribute('data-mo'); 
     }
-  }
+
+    addEventListener('resize', function(e){
+      console.log("Resize");
+      console.log(e);
+    });
+
+    addEventListener('scroll', function(e){
+      console.log("Scroll");
+      console.log(e);
+    });
+
+  },
+
+
+
+
   
 }
 

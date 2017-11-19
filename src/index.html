@@ -10,7 +10,7 @@
       padding:100px;
       font-family: 'SF UI Display';
       font-weight: 300;
-      font-size: 24px;
+      font-size: 32px;
       text-align: center;
     }
 
@@ -29,30 +29,75 @@
       margin: 15px;
       overflow: hidden;
     }
+
+    .slide{
+      width: 100%;
+      height: 600px;
+      padding: 100px 0;
+    }
+
+    .slide-purple{
+      background: #743BC4;
+      color: #fff;
+    }
+
+    .ib{
+      display: inline-block;
+    }
+
   </style>
 
   <body>
 
-    <div class="card" data-mo="mo-flip-v mo-200">
-      <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="100" fill="#EE176D" />
-      </svg>
+    <div class="slide">
+
+      <div class="card" data-mo="mo-flip-v mo-200">
+        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#EE176D" />
+        </svg>
+      </div>
+      <div class="card" data-mo="mo-flip-h mo-400">
+        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="#743BC4" />
+        </svg>
+      </div>
+
+      <div class="card" data-mo="mo-fade-left">
+        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,100 50,0 100,100" fill="#03B0F7" />
+        </svg>
+      </div>
+
+      <div class="card" data-mo="mo-fade-right">
+        <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="0,50 50,0 100,50 50,100" fill="#A71FBB" />
+        </svg>
+      </div>
+
+      <div data-mo="mo-fade-up">Motioner</div>
     </div>
-    <div class="card" data-mo="mo-flip-h mo-400">
-      <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="50" fill="#743BC4" />
-      </svg>
+
+    <div class="slide slide-purple">
+      
+      <div data-mo="mo-fade-down">
+        <div data-mo="mo-flip-h">
+          Flip horizontal
+        </div>
+      </div>
+
+      <div data-mo="mo-flip-50-h">
+        
+        <div class="ib" data-mo="mo-zoom-out">
+          <img src="src/img/01.png" alt="" />
+        </div>
+
+        <div class="ib" data-mo="mo-zoom-in">
+          <img src="src/img/01.png" alt="" />
+        </div>
+
+      </div>
+
     </div>
-
-    <div class="card" data-mo="mo-fade-left">
-      <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0,100 50,0 100,100" fill="#03B0F7" />
-      </svg>
-    </div>
-
-    <div data-mo="mo-fade-top">Motioner</div>
-
-
     
   </body>
 </html>
