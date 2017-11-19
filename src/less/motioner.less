@@ -1,0 +1,45 @@
+.mo{
+  
+    &.mo-in{
+      opacity: 1;
+     
+      animation-duration: 1.4s;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: backwards;
+      
+      &.mo-flip-v{      animation-name: flip-v }
+      &.mo-flip-h{      animation-name: flip-h }
+      &.mo-fade-left{   animation-name: fade-left }
+      &.mo-fade-top{    animation-name: fade-top }
+      
+      &.mo-200{        animation-delay: 0.2s;}
+      &.mo-400{        animation-delay: 0.4s;}
+      &.mo-600{        animation-delay: 0.6s;}
+      &.mo-800{        animation-delay: 0.8s;}
+      
+    } 
+}
+
+@keyframes flip-h{
+  0%    {  opacity: 0; transform: rotateY(180deg) }
+  30%   {  opacity: 0; }
+  100%  {  opacity: 1; transform: rotateY(0) }
+}
+
+@keyframes flip-v{
+  0%    {  opacity: 0; transform: rotateX(180deg) }
+  30%   {  opacity: 0; }
+  100%  {  opacity: 1; transform: rotateX(0) }
+}
+
+@keyframes fade-left{
+  0%    {  opacity: 0; transform: translateX(-200px) }
+  30%   {  opacity: 0; }
+  100%  {  opacity: 1; transform: translateX(0) }
+}
+
+@keyframes fade-top{
+  0%    {  opacity: 0; transform: translateY(-100px) }
+  30%   {  opacity: 0; }
+  100%  {  opacity: 1; transform: translateY(0) }
+}
