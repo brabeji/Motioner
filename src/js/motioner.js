@@ -11,7 +11,7 @@ var Motioner = {
   elementsDone: [],
   elementsQueue: [],
 
-  onetime: false,             // animation happend only one-time
+  onetime: true,             // animation happend only one-time
   
   init: function(){
 
@@ -73,13 +73,24 @@ var Motioner = {
         
         if(node.node.className.indexOf('mo-in') < 0){
           node.node.className += " mo-in";
+
+          // in case element has been pushed by animation then should be moved to done elements array
+
+          if(this.onetime){
+            this.elementsDone.push(node);
+            this.elementsQueue.splice(this.elementsQueue.indexOf(node) , 1);
+          }
+
         }
 
       }else{
-        node.node.className = node.node.className.replace(" mo-in", "");
+          node.node.className = node.node.className.replace(" mo-in", "");
       }
 
     }
+
+    console.log(this.elementsDone);
+    console.log(this.elementsQueue);
 
   }
 
