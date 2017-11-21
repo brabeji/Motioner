@@ -7,6 +7,7 @@
       animation-duration: 1s;
       animation-timing-function: ease-in-out;
       animation-fill-mode: backwards;
+      animation-direction: alternate;
       
       &.mo-flip-v{          animation-name: mo-flip-v }
       &.mo-flip-h{          animation-name: mo-flip-h }
@@ -19,8 +20,8 @@
       &.mo-fade-up{         animation-name: mo-fade-up }
       &.mo-fade-down{       animation-name: mo-fade-down }
 
-      &.mo-zoom-in{         animation-name: mo-zoom-in;   transform: scale(1) }
-      &.mo-zoom-out{        animation-name: mo-zoom-out;  transform: scale(0) }
+      &.mo-zoom-in{         animation-name: mo-zoom-in;   transform: scale(1.1) }
+      &.mo-zoom-out{        animation-name: mo-zoom-out;  transform: scale(0.9) }
 
       &.mo-rotate-left{     animation-name: mo-rotate-left }
       &.mo-rotate-right{    animation-name: mo-rotate-right }
@@ -86,13 +87,13 @@
 }
 
 @keyframes mo-zoom-in{
-  0%    {  transform: scale(0) }
-  100%  {  transform: scale(1) }
+  0%    {  transform: scale(1) }
+  100%  {  transform: scale(1.1) }
 }
 
 @keyframes mo-zoom-out{
   0%    {  transform: scale(1) }
-  100%  {  transform: scale(0) }
+  100%  {  transform: scale(0.9) }
 }
 
 @keyframes mo-rotate-left{

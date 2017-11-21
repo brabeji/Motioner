@@ -11,7 +11,8 @@ var Motioner = {
   elementsDone: [],
   elementsQueue: [],
 
-  onetime: true,             // animation happend only one-time
+  onetime: false,             // animation happend only one-time
+  tmpScrollY: -1,
   
   init: function(){
 
@@ -28,6 +29,7 @@ var Motioner = {
         y: this.getPosition(node),      // add default position
         offset: 0,                      // TODO
         targetTrigger: null,            // TODO
+        triggered: false,
         node: node                      // add node
       });
 
@@ -67,34 +69,30 @@ var Motioner = {
 
     offset += point;
 
-    for(var node of this.elementsQueue){
+    // Down
+    if(offset > this.tmpScroll){
 
-      if(offset > node.y){
-        
-        if(node.node.className.indexOf('mo-in') < 0){
+      for(var node of this.elementsQueue){
+        if(offset > node.y){
           node.node.className += " mo-in";
-
-          // in case element has been pushed by animation then should be moved to done elements array
-
-          if(this.onetime){
-            this.elementsDone.push(node);
-            this.elementsQueue.splice(this.elementsQueue.indexOf(node) , 1);
-          }
-
+          this.elementsDone.push(node);
+          this.elementsQueue.splice(this.elementsQueue.indexOf(node) , 1);
         }
-
-      }else{
-          node.node.className = node.node.className.replace(" mo-in", "");
       }
 
+    }else{
+    // Up
+      for(var node of this.elementsDone){
+        if(offset < node.y){
+          node.node.className = node.node.className.replace(" mo-in", "");
+          this.elementsQueue.push(node);
+          this.elementsDone.splice(this.elementsDone.indexOf(node) , 1);
+        }
+      }      
     }
 
-    console.log(this.elementsDone);
-    console.log(this.elementsQueue);
-
+    this.tmpScroll = offset; // last scroll position
   }
-
-
   
 }
 
