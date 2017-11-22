@@ -49,7 +49,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      background: rgba(255, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(255,0,0,0.5);
       width: 100%;
       height: 492px;
       z-index: 1;
@@ -59,14 +59,17 @@
       clear: both;
     }
 
+    .hide{
+      display: none !important;
+    }
+
   </style>
 
   <body>
     
   <div class="checker"></div>
 
-    <div class="slide">
-
+    <div class="slide hide">
       <div class="card" data-mo="mo-flip-v mo-200">
         <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
           <rect width="100" height="100" fill="#EE176D" />
@@ -89,67 +92,8 @@
           <polygon points="0,50 50,0 100,50 50,100" fill="#A71FBB" />
         </svg>
       </div>
-
-      <div data-mo="mo-fade-up">Motioner</div>
+      <div data-mo="mo-fade-up">Motioner</div> 
     </div>
-
-    <div class="slide slide-purple">
-      
-      <div data-mo="mo-fade-down">
-        <div data-mo="mo-flip-h">
-          Flip horizontal
-        </div>
-      </div>
-
-      <div>
-        <div class="ib" data-mo="mo-zoom-in">
-          <img src="src/img/01.png" alt="" />
-        </div>
-        <div class="ib" data-mo="mo-zoom-out mo-800">
-          <img src="src/img/01.png" alt="" />
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="clearfix"></div>
-
-    <!-- Testing performance -->
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
-    <div class="slide slide-purple"><div><div>Flip horizontal</div></div><div data-mo="03 mo-flip-50-h"><div class="ib" data-mo="mo-rotate-right"><img src="src/img/01.png" alt="" /></div><div class="ib" data-mo="04 mo-rotate-left"><img src="src/img/01.png" alt="" /></div></div></div>
 
 
 

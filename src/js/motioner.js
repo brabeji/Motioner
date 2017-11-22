@@ -70,7 +70,7 @@ var Motioner = {
     offset += point;
 
     // Down
-    if(offset > this.tmpScroll){
+    if(offset > this.tmpScrollY){
 
       for(var node of this.elementsQueue){
         if(offset > node.y){
@@ -91,7 +91,7 @@ var Motioner = {
       }      
     }
 
-    this.tmpScroll = offset; // last scroll position
+    this.tmpScrollY = offset; // last scroll position
   }
   
 }
