@@ -22,6 +22,8 @@ var Motioner = {
    */
   init: function(){
 
+    var self = this;
+
     elements = document.querySelectorAll('[data-mo]');                // work only in any browsers // needs to be updated
 
     for (var node of elements) {
@@ -43,14 +45,10 @@ var Motioner = {
     var checker = document.querySelector('.checker');
     checker.style.top = point + 'px';
 
-    var self = this;
-
-    self.update();
-
     addEventListener('resize', function(e){ self.updatePosition(); self.update(); });
     addEventListener('scroll', function(e){ self.update(); });
 
-    
+    this.update();
   },
 
   getPosition: function(element) {
@@ -84,19 +82,21 @@ var Motioner = {
 
     offset += point;
 
-    var toSwap = [];
-
     for(var node of this.elementsQueue){
       
       if(offset > this.tmpScrollY && !node.triggered){
         // down
           if(offset > node.y){
             node.node.className += " mo-in";
-            node.node.triggered = true;
+            node.triggered = true;
           }
       }else{
+
+        console.log('Scroll up');
+
         if(offset < node.y){
           node.node.className = node.node.className.replace(" mo-in", "");
+          node.triggered = false;
         }
       }
 
