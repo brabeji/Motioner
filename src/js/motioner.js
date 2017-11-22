@@ -7,23 +7,26 @@ var elements = [];
 
 var Motioner = {
 	
-  elements: [],
-  elementsDone: [],
-  elementsQueue: [],
+  elementsDone: [],           // elements that have been already triggered
+  elementsQueue: [],          // elements that have not been already triggered
 
   onetime: false,             // animation happend only one-time
-  tmpScrollY: -1,
+  tmpScrollY: 0,             // current scroll position
   
+
+  /*  Init
+   * 
+   *  It found all elements on the page that use motioner data attribute data-mo,
+   *  push them into queue and init global scroll and resize event listeners
+   *
+   */
   init: function(){
 
-    // work only in any browsers // needs to be updated
-    elements = document.querySelectorAll('[data-mo]');
+    elements = document.querySelectorAll('[data-mo]');                // work only in any browsers // needs to be updated
 
     for (var node of elements) {
-   		// add general motioner classes
-      node.className += " mo";
-      // add specific animation, delays and other setups;
-      node.className += " " + node.getAttribute('data-mo'); 
+   		
+      node.className += " mo " + node.getAttribute('data-mo');       // add general motioner classes + add specific animation, delays and other setups;
 
       this.elementsQueue.push({
         y: this.getPosition(node),      // add default position
@@ -35,12 +38,19 @@ var Motioner = {
 
     }
 
+
+    var point = window.innerHeight/2;
+    var checker = document.querySelector('.checker');
+    checker.style.top = point + 'px';
+
     var self = this;
+
+    self.update();
 
     addEventListener('resize', function(e){ self.updatePosition(); self.update(); });
     addEventListener('scroll', function(e){ self.update(); });
 
-    self.update();
+    
   },
 
   getPosition: function(element) {
@@ -56,7 +66,11 @@ var Motioner = {
 
   updatePosition: function(){
 
-    for (var node of elements) {
+    for (var node of this.elementsQueue) {
+      node.y = this.getPosition(node)
+    }
+
+    for (var node of this.elementsDone) {
       node.y = this.getPosition(node)
     }
 
@@ -64,31 +78,28 @@ var Motioner = {
 
   update: function(){
 
+    var self = this;
     var point = window.innerHeight/2;
     var offset = window.pageYOffset || document.documentElement.scrollTop;
 
     offset += point;
 
-    // Down
-    if(offset > this.tmpScrollY){
+    var toSwap = [];
 
-      for(var node of this.elementsQueue){
-        if(offset > node.y){
-          node.node.className += " mo-in";
-          this.elementsDone.push(node);
-          this.elementsQueue.splice(this.elementsQueue.indexOf(node) , 1);
+    for(var node of this.elementsQueue){
+      
+      if(offset > this.tmpScrollY && !node.triggered){
+        // down
+          if(offset > node.y){
+            node.node.className += " mo-in";
+            node.node.triggered = true;
+          }
+      }else{
+        if(offset < node.y){
+          node.node.className = node.node.className.replace(" mo-in", "");
         }
       }
 
-    }else{
-    // Up
-      for(var node of this.elementsDone){
-        if(offset < node.y){
-          node.node.className = node.node.className.replace(" mo-in", "");
-          this.elementsQueue.push(node);
-          this.elementsDone.splice(this.elementsDone.indexOf(node) , 1);
-        }
-      }      
     }
 
     this.tmpScrollY = offset; // last scroll position

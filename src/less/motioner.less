@@ -2,6 +2,7 @@
 @import 'animations/flip';
 @import 'animations/pulse';
 @import 'animations/zoom';
+@import 'animations/rotation';
 
 .mo{
   
@@ -14,10 +15,6 @@
       animation-fill-mode: backwards;
       animation-direction: alternate;
 
-
-      &.mo-rotate-left{     animation-name: mo-rotate-left }
-      &.mo-rotate-right{    animation-name: mo-rotate-right }
-
       /* Delays */
       &.mo-200{        animation-delay: 0.2s;}
       &.mo-400{        animation-delay: 0.4s;}
@@ -26,17 +23,6 @@
       
     } 
 }
-
-@keyframes mo-rotate-left{
-  0%    {  transform: rotate3d(0, 0, 1, 180deg) }
-  100%  {  transform: rotate3d(0, 0, 1, 0) }
-}
-
-@keyframes mo-rotate-right{
-  0%    {  transform: rotate3d(0, 0, 1, -180deg) }
-  100%  {  transform: rotate3d(0, 0, 1, 0) }
-}
-
 
 
 
