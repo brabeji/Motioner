@@ -1,0 +1,23 @@
+.mo{
+
+	&.mo-fade-down{
+		opacity: 0;
+		transform: translate(0, -160px);
+		transform: translate3d(0, -160px, 0);
+	}
+
+	&.mo-fade-up{
+		opacity: 0;
+		transform: translate(0, 160px);
+		transform: translate3d(0, 160px, 0);
+	}
+
+	&.mo-in{
+		&.mo-fade-down, &.mo-fade-up{
+			opacity: 1;
+			transform: translate(0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+}

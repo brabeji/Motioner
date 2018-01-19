@@ -3,54 +3,82 @@ require('../less/motioner.less');
 // Polyfill
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
-var elements = [];
-
 var Motioner = {
-	
-  elementsDone: [],           // elements that have been already triggered
-  elementsQueue: [],          // elements that have not been already triggered
-
-  onetime: false,             // animation happend only one-time
-  tmpScrollY: 0,             // current scroll position
   
-
-  /*  Init
-   * 
-   *  It found all elements on the page that use motioner data attribute data-mo,
-   *  push them into queue and init global scroll and resize event listeners
-   *
-   */
-  init: function(){
-
-    var self = this;
-
-    elements = document.querySelectorAll('[data-mo]');                // work only in any browsers // needs to be updated
-
+  offsetTrigger: 200,
+  pointer: 0,       // it is a pointer to current depth
+  tree: [],
+  tmpOffset: 0,
+  
+  init: function() {
+    var elements = document.querySelectorAll('[data-mo]'); 
+    
     for (var node of elements) {
-   		
-      node.className += " mo " + node.getAttribute('data-mo');       // add general motioner classes + add specific animation, delays and other setups;
+      
+      // add prefixes and classes
+      node.className += " mo mo-" + node.getAttribute('data-mo').replace(' ', ' mo-');
 
-      this.elementsQueue.push({
+      this.tree.push({
         y: this.getPosition(node),      // add default position
-        offset: 0,                      // TODO
-        targetTrigger: null,            // TODO
         triggered: false,
         node: node                      // add node
       });
 
     }
-
-
-    var point = window.innerHeight/2;
-    var checker = document.querySelector('.checker');
-    checker.style.top = point + 'px';
-
-    addEventListener('resize', function(e){ self.updatePosition(); self.update(); });
-    addEventListener('scroll', function(e){ self.update(); });
-
+    
+    var self = this;
+    
+    addEventListener('scroll', function(e){ self.update() });
+    addEventListener('resize', function(e){ self.updatePositions(); self.update() });
+    
     this.update();
   },
-
+  
+  next: function(){
+    if(!this.tree[this.pointer].triggered){
+      this.tree[this.pointer].node.className += ' mo-in';
+      this.tree[this.pointer].triggered = true;
+    }
+  },
+  
+  prev: function(){
+    if(this.tree[this.pointer].triggered){
+      this.tree[this.pointer].node.className = this.tree[this.pointer].node.className.replace('mo-in', '');
+      this.tree[this.pointer].triggered = false;
+    }
+  },
+  
+  update: function(){
+  
+    var scrollOffset = window.pageYOffset || document.documentElement.scrollTop;
+    scrollOffset += this.offsetTrigger;
+    
+    if(scrollOffset > this.tmpOffset){
+      if(scrollOffset > this.tree[this.pointer].y){
+        this.next();
+        this.pointer = this.pointer+1 >= this.tree.length ? this.pointer : this.pointer+1; 
+//        console.log("Pointer - " + this.pointer);
+      }
+    }else{
+      if(scrollOffset < this.tree[this.pointer].y){
+        this.prev();
+        this.pointer = this.pointer - 1 < 0 ? 0 : this.pointer-1; 
+//        console.log("Pointer - " + this.pointer);
+      }
+    }
+  
+    this.tmpOffset = scrollOffset;
+    
+  },
+  
+  updatePositions: function(){
+  
+    for (var node of this.tree) {
+      node.y = this.getPosition(node.node);
+    }
+    
+  },
+  
   getPosition: function(element) {
       var yPosition = 0;
 
@@ -60,49 +88,6 @@ var Motioner = {
       }
 
       return yPosition;
-  },
-
-  updatePosition: function(){
-
-    for (var node of this.elementsQueue) {
-      node.y = this.getPosition(node)
-    }
-
-    for (var node of this.elementsDone) {
-      node.y = this.getPosition(node)
-    }
-
-  },
-
-  update: function(){
-
-    var self = this;
-    var point = window.innerHeight/2;
-    var offset = window.pageYOffset || document.documentElement.scrollTop;
-
-    offset += point;
-
-    for(var node of this.elementsQueue){
-      
-      if(offset > this.tmpScrollY && !node.triggered){
-        // down
-          if(offset > node.y){
-            node.node.className += " mo-in";
-            node.triggered = true;
-          }
-      }else{
-
-        console.log('Scroll up');
-
-        if(offset < node.y){
-          node.node.className = node.node.className.replace(" mo-in", "");
-          node.triggered = false;
-        }
-      }
-
-    }
-
-    this.tmpScrollY = offset; // last scroll position
   }
   
 }
