@@ -5,11 +5,11 @@ NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
 var Motioner = {
   
-  offsetTrigger: 200,
+  offsetTrigger: 700,
   pointer: 0,       // it is a pointer to current depth
   tree: [],
   tmpOffset: 0,
-  
+
   init: function() {
     var elements = document.querySelectorAll('[data-mo]'); 
     
@@ -31,9 +31,20 @@ var Motioner = {
     addEventListener('scroll', function(e){ self.update() });
     addEventListener('resize', function(e){ self.updatePositions(); self.update() });
     
+    console.log('Count of elements: ' + this.tree.length);
+    console.log('Pointer before start init: ' + this.pointer);
+
     this.update();
+
+
+    //alert(this.pointer);
+
+    console.log('Pointer after start init: ' + this.pointer);
   },
   
+  /**
+   *  Move pointer to next element
+   */
   next: function(){
     if(!this.tree[this.pointer].triggered){
       this.tree[this.pointer].node.className += ' mo-in';
@@ -41,6 +52,9 @@ var Motioner = {
     }
   },
   
+  /**
+   *  Move pointer to previous element
+   */
   prev: function(){
     if(this.tree[this.pointer].triggered){
       this.tree[this.pointer].node.className = this.tree[this.pointer].node.className.replace('mo-in', '');
@@ -48,29 +62,55 @@ var Motioner = {
     }
   },
   
+  /**
+   *  Move pointer to next element
+   */
   update: function(){
   
     var scrollOffset = window.pageYOffset || document.documentElement.scrollTop;
     scrollOffset += this.offsetTrigger;
+
+    console.log(scrollOffset + ' - ' + this.tree[this.pointer].y);
     
-    if(scrollOffset > this.tmpOffset){
-      if(scrollOffset > this.tree[this.pointer].y){
-        this.next();
-        this.pointer = this.pointer+1 >= this.tree.length ? this.pointer : this.pointer+1; 
-//        console.log("Pointer - " + this.pointer);
+    // TODO: Remove only one step pointer increasing and replace it by while until positon
+    if(scrollOffset > this.tmpOffset){  
+
+      while(scrollOffset > this.tree[this.pointer].y && this.pointer < this.tree.length ){
+
+          this.next();
+          this.pointer++;
+
+          if(this.pointer >= this.tree.length){
+              this.pointer--;
+             break;
+          }
+
+          console.log(this.pointer);
       }
+
     }else{
-      if(scrollOffset < this.tree[this.pointer].y){
+
+      console.log('scroll up' + this.pointer);
+      console.log(scrollOffset + ' - ' + this.tree[this.pointer].y);
+
+      while((scrollOffset < this.tree[this.pointer].y) && this.pointer > 0 ){
         this.prev();
-        this.pointer = this.pointer - 1 < 0 ? 0 : this.pointer-1; 
-//        console.log("Pointer - " + this.pointer);
+        this.pointer--; 
+        console.log()
+        console.log(this.pointer);
       }
+
     }
   
     this.tmpOffset = scrollOffset;
     
   },
   
+  /** 
+   *  Update elements potisition
+   *  It is used in resize callback and init
+   */
+
   updatePositions: function(){
   
     for (var node of this.tree) {
@@ -78,6 +118,10 @@ var Motioner = {
     }
     
   },
+
+  /**
+   *  Return position of element
+   */
   
   getPosition: function(element) {
       var yPosition = 0;
@@ -92,4 +136,23 @@ var Motioner = {
   
 }
 
-Motioner.init();
+
+
+
+
+document.addEventListener('DOMContentLoaded', function(){
+  
+  Motioner.init();
+  
+}, false);
+
+
+
+
+
+
+
+
+
+
+
