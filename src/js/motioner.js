@@ -14,9 +14,8 @@ var Motioner = {
     var elements = document.querySelectorAll('[data-mo]'); 
     
     for (var node of elements) {
-      
-      // add prefixes and classes
-      node.className += " mo mo-" + node.getAttribute('data-mo').replace(' ', ' mo-');
+
+      node.className += " mo mo-" + node.getAttribute('data-mo').replace(/  /g, ' ').replace(/ /g, ' mo-');   // remove double spaces and add prefixes
 
       this.tree.push({
         y: this.getPosition(node),      // add default position
