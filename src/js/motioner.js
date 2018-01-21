@@ -9,6 +9,7 @@ var Motioner = {
   pointer: 0,       // it is a pointer to current depth
   tree: [],
   tmpOffset: 0,
+  viewHeight: 0,
 
   init: function() {
     var elements = document.querySelectorAll('[data-mo]'); 
@@ -24,21 +25,20 @@ var Motioner = {
       });
 
     }
+
+    this.viewHeight = window.innerHeight;
     
     var self = this;
     
     addEventListener('scroll', function(e){ self.update() });
     addEventListener('resize', function(e){ self.updatePositions(); self.update() });
     
-    console.log('Count of elements: ' + this.tree.length);
-    console.log('Pointer before start init: ' + this.pointer);
+    //console.log('Count of elements: ' + this.tree.length);
+    //console.log('Pointer before start init: ' + this.pointer);
 
     this.update();
 
-
-    //alert(this.pointer);
-
-    console.log('Pointer after start init: ' + this.pointer);
+    //console.log('Pointer after start init: ' + this.pointer);
   },
   
   /**
@@ -67,9 +67,9 @@ var Motioner = {
   update: function(){
   
     var scrollOffset = window.pageYOffset || document.documentElement.scrollTop;
-    scrollOffset += this.offsetTrigger;
+    scrollOffset += this.viewHeight;     // TODO: implement offset trigger
 
-    console.log(scrollOffset + ' - ' + this.tree[this.pointer].y);
+    //console.log(scrollOffset + ' - ' + this.tree[this.pointer].y);
     
     // TODO: Remove only one step pointer increasing and replace it by while until positon
     if(scrollOffset > this.tmpOffset){  
@@ -84,7 +84,7 @@ var Motioner = {
              break;
           }
 
-          console.log(this.pointer);
+          //console.log(this.pointer);
       }
 
     }else{
@@ -112,6 +112,8 @@ var Motioner = {
 
   updatePositions: function(){
   
+    this.viewHeight = window.innerHeight;
+
     for (var node of this.tree) {
       node.y = this.getPosition(node.node);
     }
