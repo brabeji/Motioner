@@ -1,5 +1,6 @@
 require('../less/motioner.less');
 
+
 // Polyfill
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
@@ -137,13 +138,7 @@ var Motioner = {
   
 }
 
-
-export default Motioner;
-
-
-
-
-
+module.exports = Motioner;
 
 
 
