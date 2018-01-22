@@ -4,11 +4,15 @@ const path = require('path');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+
+
 module.exports = {
-	entry: './src/js/motioner.js',
-	output: {
+	
+      entry: './src/js/motioner.js',
+	
+      output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'motioner.js'
+		filename: 'js/motioner.js'
 	},
 
 	module: {
@@ -19,16 +23,25 @@ module.exports = {
       		{
       			test: /\.less$/,
       			exclude: /node_modules/,
-      			use: [
-      				{loader: 'style-loader'},
-      				{loader: 'css-loader'},
-      				{
-      					loader: 'less-loader',
-      					options: {
-      						strictMath: true
-      					}
-      				}
-      			]
+
+                        use: ExtractTextPlugin.extract({
+                              fallback: "style-loader",
+                              use: [
+                                    {loader: 'css-loader'},
+                                    {
+                                          loader: 'less-loader',
+                                          options: {
+                                                strictMath: true
+                                          }
+                                    }
+                              ]
+                        })
+
+
+
+
+
+      			
       		},
 
                   
@@ -37,9 +50,8 @@ module.exports = {
 	},
 
 	plugins: [
-            
+            new ExtractTextPlugin({filename: 'css/motioner.css', allChunks: true,}),
 		new HtmlWebpackPlugin({template: './src/index.html'})
-
 	]
 
 }

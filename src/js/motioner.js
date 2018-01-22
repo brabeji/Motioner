@@ -89,14 +89,14 @@ var Motioner = {
 
     }else{
 
-      console.log('scroll up' + this.pointer);
-      console.log(scrollOffset + ' - ' + this.tree[this.pointer].y);
+      //console.log('scroll up' + this.pointer);
+      //console.log(scrollOffset + ' - ' + this.tree[this.pointer].y);
 
       while((scrollOffset < this.tree[this.pointer].y) && this.pointer > 0 ){
         this.prev();
         this.pointer--; 
-        console.log()
-        console.log(this.pointer);
+        //console.log()
+        //console.log(this.pointer);
       }
 
     }
@@ -138,14 +138,7 @@ var Motioner = {
 }
 
 
-
-
-
-document.addEventListener('DOMContentLoaded', function(){
-  
-  Motioner.init();
-  
-}, false);
+export default Motioner;
 
 
 
